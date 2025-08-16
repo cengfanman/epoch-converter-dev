@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-locale: "en";
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Force English locale for date inputs */
+input[type="datetime-local"], input[type="date"], input[type="time"] {
+  -webkit-locale: "en" !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
+}
+
+/* Force English for all form controls */
+input, select, textarea {
+  -webkit-locale: "en" !important;
+}
+
+/* Specific targeting for date inputs */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 1;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-clear-button {
+  -webkit-appearance: none;
+  display: none;
+}
+
+/* Force English date format display */
+input[type="date"] {
+  font-variant-numeric: tabular-nums;
+  text-align: left;
+}
+
+/* Override any system locale settings */
+* {
+  -webkit-locale: "en" !important;
+}
+
+html {
+  -webkit-locale: "en" !important;
+  lang: en !important;
+}
