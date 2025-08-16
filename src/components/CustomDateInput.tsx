@@ -44,7 +44,6 @@ export function CustomDateInput({ value, onChange, label, className = '', min, m
     }
   }, [year, month, day, onChange, value]);
 
-  const currentYear = new Date().getFullYear();
   const minYear = min ? parseInt(min.split('-')[0]) : 1970;
   const maxYear = max ? parseInt(max.split('-')[0]) : 2099;
 

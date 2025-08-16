@@ -5,11 +5,9 @@ interface InputDateComponentProps {
   onChange: (value: string) => void;
   label?: string;
   className?: string;
-  min?: string;
-  max?: string;
 }
 
-export function InputDateComponent({ value, onChange, label, className = '', min, max }: InputDateComponentProps) {
+export function InputDateComponent({ value, onChange, label, className = '' }: InputDateComponentProps) {
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
   const [day, setDay] = useState('');
@@ -25,7 +23,7 @@ export function InputDateComponent({ value, onChange, label, className = '', min
     };
   };
 
-  const initialState = parseValue(value);
+
   
   // Update states when value changes
   useEffect(() => {

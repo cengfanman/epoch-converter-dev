@@ -254,8 +254,6 @@ function App() {
                     label="Date"
                     value={startEndDate}
                     onChange={setStartEndDate}
-                    min="1970-01-01"
-                    max="2099-12-31"
                   />
                 </div>
                 <div className="flex flex-col">

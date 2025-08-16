@@ -97,7 +97,7 @@ export function getCurrentWeekInfo(timezone: string): { weekYear: number; weekNu
   };
 }
 
-export function parseEpochInput(input: string, unit: 'seconds' | 'milliseconds'): number | null {
+export function parseEpochInput(input: string, _unit: 'seconds' | 'milliseconds'): number | null {
   const trimmed = input.trim();
   if (!trimmed) return null;
   
