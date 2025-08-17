@@ -18,7 +18,7 @@ export function TimezoneSelector({ value, onChange, className = '', label }: Tim
   return (
     <div className={className}>
       {label && (
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-bold text-blue-700 mb-1">
           {label}
         </label>
       )}

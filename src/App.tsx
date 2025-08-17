@@ -136,7 +136,7 @@ function App() {
                   </p>
                 </div>
                 <div className="flex flex-col">
-                  <label className="text-sm font-medium text-gray-700 mb-1">Timezone</label>
+                  <label className="text-sm font-bold text-blue-700 mb-1">Timezone</label>
                   <select
                     value={selectedTimezone}
                     onChange={(e) => setSelectedTimezone(e.target.value)}
