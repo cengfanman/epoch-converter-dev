@@ -12,6 +12,7 @@ export function TimezoneSelector({ value, onChange, className = '', label }: Tim
     { value: 'America/New_York', label: 'America/New_York' },
     { value: 'America/Los_Angeles', label: 'America/Los_Angeles' },
     { value: 'Asia/Shanghai', label: 'Asia/Shanghai' },
+    { value: 'Asia/Kolkata', label: 'Asia/Kolkata (IST)' },
     { value: 'Europe/London', label: 'Europe/London' },
   ];
 

@@ -515,7 +515,7 @@ function App() {
                       />
                     </div>
                     <div className="w-48">
-                      <label className="text-xs text-gray-500 block mb-1">Timezone</label>
+                      <label className="text-xs font-bold text-blue-700 block mb-1">Timezone</label>
                       <select
                         value={customRangeTimezone}
                         onChange={(e) => setCustomRangeTimezone(e.target.value)}
@@ -526,6 +526,7 @@ function App() {
                         <option value="America/New_York">America/New_York</option>
                         <option value="America/Los_Angeles">America/Los_Angeles</option>
                         <option value="Asia/Shanghai">Asia/Shanghai</option>
+                        <option value="Asia/Kolkata">Asia/Kolkata (IST)</option>
                         <option value="Europe/London">Europe/London</option>
                       </select>
                     </div>
