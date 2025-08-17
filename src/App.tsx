@@ -157,7 +157,8 @@ function App() {
 
             {/* Module 1: Epoch → Human */}
             <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">Epoch → Human</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Epoch → Human</h2>
+              <p className="text-base font-bold text-gray-600 mb-4">Convert Unix timestamp to human-readable date and time</p>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
                 <div>
                   <label className="text-sm font-medium text-gray-700 mb-1 block">Epoch Input</label>
@@ -212,8 +213,8 @@ function App() {
 
             {/* Module 2: Human → Epoch */}
             <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">Human → Epoch</h2>
-              <p className="text-sm text-gray-600 mb-4">Enter date and time in 24-hour format</p>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Human → Epoch</h2>
+              <p className="text-base font-bold text-gray-600 mb-4">Convert human-readable date and time to Unix timestamp (24-hour format)</p>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
                 <div className="lg:col-span-2">
                   <DateTimeInputComponent
@@ -247,7 +248,8 @@ function App() {
 
             {/* Module 3: Start/End */}
             <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">Start/End (Year/Month/Day)</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Start/End (Year/Month/Day)</h2>
+              <p className="text-base font-bold text-gray-600 mb-4">Epoch timestamps for the start and end of the selected year/month/day</p>
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-4">
                 <div className="lg:col-span-2">
                   <InputDateComponent
@@ -291,8 +293,8 @@ function App() {
 
             {/* Module 4: Custom Range */}
             <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">Custom Range</h2>
-              <p className="text-sm text-gray-600 mb-4">Select date and time range (defaults to current month: 1st 00:00:00 to now)</p>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Custom Range</h2>
+              <p className="text-base font-bold text-gray-600 mb-4">Convert custom date and time range to Unix timestamps (defaults to current month: 1st 00:00:00 to now)</p>
               <div className="flex flex-col lg:flex-row gap-6 mb-4">
                 {/* Start Date & Time */}
                 <div className="flex-1">
@@ -547,7 +549,8 @@ function App() {
           
           {/* Code Snippets Section - Moved to bottom */}
           <div className="bg-white rounded-lg shadow-md p-6 mt-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Code Snippets</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Code Snippets</h2>
+            <p className="text-base font-bold text-gray-600 mb-6">Ready-to-use code examples for converting timestamps in different programming languages</p>
             
             {/* Language Pills */}
             <div className="flex flex-wrap gap-2 mb-6">
