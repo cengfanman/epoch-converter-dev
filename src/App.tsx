@@ -293,24 +293,242 @@ function App() {
             <div className="bg-white rounded-lg shadow-md p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">Custom Range</h2>
               <p className="text-sm text-gray-600 mb-4">Select date and time range (defaults to current month: 1st 00:00:00 to now)</p>
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-4">
-                <DateTimeRangeInput
-                  label="Start Date & Time"
-                  value={customStart}
-                  onChange={setCustomStart}
-                />
-                <DateTimeRangeInput
-                  label="End Date & Time"
-                  value={customEnd}
-                  onChange={setCustomEnd}
-                />
-                <div className="flex flex-col">
-                  <TimezoneSelector 
-                    value={customRangeTimezone} 
-                    onChange={setCustomRangeTimezone} 
-                    label="Timezone"
-                    className="mt-[20px]"
-                  />
+              <div className="flex flex-col lg:flex-row gap-6 mb-4">
+                {/* Start Date & Time */}
+                <div className="flex-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Start Date & Time</label>
+                  <div className="flex gap-2">
+                    <div className="flex-1">
+                      <label className="text-xs text-gray-500 block mb-1">Year</label>
+                      <input
+                        type="text"
+                        value={customStart ? customStart.split('T')[0].split('-')[0] : ''}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/\D/g, '').slice(0, 4);
+                          if (val && customStart) {
+                            const [_, month, day] = customStart.split('T')[0].split('-');
+                            const time = customStart.split('T')[1] || '00:00:00';
+                            setCustomStart(`${val}-${month}-${day}T${time}`);
+                          } else if (val) {
+                            setCustomStart(`${val}-01-01T00:00:00`);
+                          }
+                        }}
+                        placeholder="YYYY"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-[42px] text-center"
+                      />
+                    </div>
+                    <div className="w-16">
+                      <label className="text-xs text-gray-500 block mb-1">Month</label>
+                      <input
+                        type="text"
+                        value={customStart ? customStart.split('T')[0].split('-')[1] : ''}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/\D/g, '').slice(0, 2);
+                          if (val && parseInt(val) >= 1 && parseInt(val) <= 12 && customStart) {
+                            const [year, _, day] = customStart.split('T')[0].split('-');
+                            const time = customStart.split('T')[1] || '00:00:00';
+                            setCustomStart(`${year}-${val.padStart(2, '0')}-${day}T${time}`);
+                          }
+                        }}
+                        placeholder="MM"
+                        className="w-full px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-[42px] text-center"
+                      />
+                    </div>
+                    <div className="w-16">
+                      <label className="text-xs text-gray-500 block mb-1">Day</label>
+                      <input
+                        type="text"
+                        value={customStart ? customStart.split('T')[0].split('-')[2] : ''}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/\D/g, '').slice(0, 2);
+                          if (val && parseInt(val) >= 1 && parseInt(val) <= 31 && customStart) {
+                            const [year, month, _] = customStart.split('T')[0].split('-');
+                            const time = customStart.split('T')[1] || '00:00:00';
+                            setCustomStart(`${year}-${month}-${val.padStart(2, '0')}T${time}`);
+                          }
+                        }}
+                        placeholder="DD"
+                        className="w-full px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-[42px] text-center"
+                      />
+                    </div>
+                    <div className="w-16">
+                      <label className="text-xs text-gray-500 block mb-1">Hour</label>
+                      <input
+                        type="text"
+                        value={customStart ? customStart.split('T')[1]?.split(':')[0] : ''}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/\D/g, '').slice(0, 2);
+                          if (val && parseInt(val) >= 0 && parseInt(val) <= 23 && customStart) {
+                            const date = customStart.split('T')[0];
+                            const [_, minute, second] = customStart.split('T')[1]?.split(':') || ['00', '00', '00'];
+                            setCustomStart(`${date}T${val.padStart(2, '0')}:${minute}:${second}`);
+                          }
+                        }}
+                        placeholder="HH"
+                        className="w-full px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-[42px] text-center"
+                      />
+                    </div>
+                    <div className="w-16">
+                      <label className="text-xs text-gray-500 block mb-1">Min</label>
+                      <input
+                        type="text"
+                        value={customStart ? customStart.split('T')[1]?.split(':')[1] : ''}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/\D/g, '').slice(0, 2);
+                          if (val && parseInt(val) >= 0 && parseInt(val) <= 59 && customStart) {
+                            const date = customStart.split('T')[0];
+                            const [hour, _, second] = customStart.split('T')[1]?.split(':') || ['00', '00', '00'];
+                            setCustomStart(`${date}T${hour}:${val.padStart(2, '0')}:${second}`);
+                          }
+                        }}
+                        placeholder="MM"
+                        className="w-full px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-[42px] text-center"
+                      />
+                    </div>
+                    <div className="w-16">
+                      <label className="text-xs text-gray-500 block mb-1">Sec</label>
+                      <input
+                        type="text"
+                        value={customStart ? customStart.split('T')[1]?.split(':')[2] : ''}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/\D/g, '').slice(0, 2);
+                          if (val && parseInt(val) >= 0 && parseInt(val) <= 59 && customStart) {
+                            const date = customStart.split('T')[0];
+                            const [hour, minute, _] = customStart.split('T')[1]?.split(':') || ['00', '00', '00'];
+                            setCustomStart(`${date}T${hour}:${minute}:${val.padStart(2, '0')}`);
+                          }
+                        }}
+                        placeholder="SS"
+                        className="w-full px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-[42px] text-center"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* End Date & Time and Timezone in one row */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">End Date & Time</label>
+                  <div className="flex gap-2">
+                    <div className="flex-1">
+                      <label className="text-xs text-gray-500 block mb-1">Year</label>
+                      <input
+                        type="text"
+                        value={customEnd ? customEnd.split('T')[0].split('-')[0] : ''}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/\D/g, '').slice(0, 4);
+                          if (val && customEnd) {
+                            const [_, month, day] = customEnd.split('T')[0].split('-');
+                            const time = customEnd.split('T')[1] || '00:00:00';
+                            setCustomEnd(`${val}-${month}-${day}T${time}`);
+                          } else if (val) {
+                            setCustomEnd(`${val}-01-01T00:00:00`);
+                          }
+                        }}
+                        placeholder="YYYY"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-[42px] text-center"
+                      />
+                    </div>
+                    <div className="w-16">
+                      <label className="text-xs text-gray-500 block mb-1">Month</label>
+                      <input
+                        type="text"
+                        value={customEnd ? customEnd.split('T')[0].split('-')[1] : ''}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/\D/g, '').slice(0, 2);
+                          if (val && parseInt(val) >= 1 && parseInt(val) <= 12 && customEnd) {
+                            const [year, _, day] = customEnd.split('T')[0].split('-');
+                            const time = customEnd.split('T')[1] || '00:00:00';
+                            setCustomEnd(`${year}-${val.padStart(2, '0')}-${day}T${time}`);
+                          }
+                        }}
+                        placeholder="MM"
+                        className="w-full px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-[42px] text-center"
+                      />
+                    </div>
+                    <div className="w-16">
+                      <label className="text-xs text-gray-500 block mb-1">Day</label>
+                      <input
+                        type="text"
+                        value={customEnd ? customEnd.split('T')[0].split('-')[2] : ''}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/\D/g, '').slice(0, 2);
+                          if (val && parseInt(val) >= 1 && parseInt(val) <= 31 && customEnd) {
+                            const [year, month, _] = customEnd.split('T')[0].split('-');
+                            const time = customEnd.split('T')[1] || '00:00:00';
+                            setCustomEnd(`${year}-${month}-${val.padStart(2, '0')}T${time}`);
+                          }
+                        }}
+                        placeholder="DD"
+                        className="w-full px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-[42px] text-center"
+                      />
+                    </div>
+                    <div className="w-16">
+                      <label className="text-xs text-gray-500 block mb-1">Hour</label>
+                      <input
+                        type="text"
+                        value={customEnd ? customEnd.split('T')[1]?.split(':')[0] : ''}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/\D/g, '').slice(0, 2);
+                          if (val && parseInt(val) >= 0 && parseInt(val) <= 23 && customEnd) {
+                            const date = customEnd.split('T')[0];
+                            const [_, minute, second] = customEnd.split('T')[1]?.split(':') || ['00', '00', '00'];
+                            setCustomEnd(`${date}T${val.padStart(2, '0')}:${minute}:${second}`);
+                          }
+                        }}
+                        placeholder="HH"
+                        className="w-full px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-[42px] text-center"
+                      />
+                    </div>
+                    <div className="w-16">
+                      <label className="text-xs text-gray-500 block mb-1">Min</label>
+                      <input
+                        type="text"
+                        value={customEnd ? customEnd.split('T')[1]?.split(':')[1] : ''}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/\D/g, '').slice(0, 2);
+                          if (val && parseInt(val) >= 0 && parseInt(val) <= 59 && customEnd) {
+                            const date = customEnd.split('T')[0];
+                            const [hour, _, second] = customEnd.split('T')[1]?.split(':') || ['00', '00', '00'];
+                            setCustomEnd(`${date}T${hour}:${val.padStart(2, '0')}:${second}`);
+                          }
+                        }}
+                        placeholder="MM"
+                        className="w-full px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-[42px] text-center"
+                      />
+                    </div>
+                    <div className="w-16">
+                      <label className="text-xs text-gray-500 block mb-1">Sec</label>
+                      <input
+                        type="text"
+                        value={customEnd ? customEnd.split('T')[1]?.split(':')[2] : ''}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/\D/g, '').slice(0, 2);
+                          if (val && parseInt(val) >= 0 && parseInt(val) <= 59 && customEnd) {
+                            const date = customEnd.split('T')[0];
+                            const [hour, minute, _] = customEnd.split('T')[1]?.split(':') || ['00', '00', '00'];
+                            setCustomEnd(`${date}T${hour}:${minute}:${val.padStart(2, '0')}`);
+                          }
+                        }}
+                        placeholder="SS"
+                        className="w-full px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-[42px] text-center"
+                      />
+                    </div>
+                    <div className="w-48">
+                      <label className="text-xs text-gray-500 block mb-1">Timezone</label>
+                      <select
+                        value={customRangeTimezone}
+                        onChange={(e) => setCustomRangeTimezone(e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-[42px]"
+                      >
+                        <option value="Local time">Local time</option>
+                        <option value="UTC">UTC (GMT)</option>
+                        <option value="America/New_York">America/New_York</option>
+                        <option value="America/Los_Angeles">America/Los_Angeles</option>
+                        <option value="Asia/Shanghai">Asia/Shanghai</option>
+                        <option value="Europe/London">Europe/London</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
               {customStartDt && customEndDt && (
