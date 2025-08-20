@@ -325,10 +325,10 @@ function App() {
                         value={customStart ? customStart.split('T')[0].split('-')[1] : ''}
                         onChange={(e) => {
                           const val = e.target.value.replace(/\D/g, '').slice(0, 2);
-                          if (val && parseInt(val) >= 1 && parseInt(val) <= 12 && customStart) {
+                          if (customStart) {
                             const [year, _, day] = customStart.split('T')[0].split('-');
                             const time = customStart.split('T')[1] || '00:00:00';
-                            setCustomStart(`${year}-${val.padStart(2, '0')}-${day}T${time}`);
+                            setCustomStart(`${year}-${val}-${day}T${time}`);
                           }
                         }}
                         placeholder="MM"
@@ -342,10 +342,10 @@ function App() {
                         value={customStart ? customStart.split('T')[0].split('-')[2] : ''}
                         onChange={(e) => {
                           const val = e.target.value.replace(/\D/g, '').slice(0, 2);
-                          if (val && parseInt(val) >= 1 && parseInt(val) <= 31 && customStart) {
+                          if (customStart) {
                             const [year, month, _] = customStart.split('T')[0].split('-');
                             const time = customStart.split('T')[1] || '00:00:00';
-                            setCustomStart(`${year}-${month}-${val.padStart(2, '0')}T${time}`);
+                            setCustomStart(`${year}-${month}-${val}T${time}`);
                           }
                         }}
                         placeholder="DD"
@@ -359,10 +359,10 @@ function App() {
                         value={customStart ? customStart.split('T')[1]?.split(':')[0] : ''}
                         onChange={(e) => {
                           const val = e.target.value.replace(/\D/g, '').slice(0, 2);
-                          if (val && parseInt(val) >= 0 && parseInt(val) <= 23 && customStart) {
+                          if (customStart) {
                             const date = customStart.split('T')[0];
                             const [_, minute, second] = customStart.split('T')[1]?.split(':') || ['00', '00', '00'];
-                            setCustomStart(`${date}T${val.padStart(2, '0')}:${minute}:${second}`);
+                            setCustomStart(`${date}T${val}:${minute}:${second}`);
                           }
                         }}
                         placeholder="HH"
@@ -376,10 +376,10 @@ function App() {
                         value={customStart ? customStart.split('T')[1]?.split(':')[1] : ''}
                         onChange={(e) => {
                           const val = e.target.value.replace(/\D/g, '').slice(0, 2);
-                          if (val && parseInt(val) >= 0 && parseInt(val) <= 59 && customStart) {
+                          if (customStart) {
                             const date = customStart.split('T')[0];
                             const [hour, _, second] = customStart.split('T')[1]?.split(':') || ['00', '00', '00'];
-                            setCustomStart(`${date}T${hour}:${val.padStart(2, '0')}:${second}`);
+                            setCustomStart(`${date}T${hour}:${val}:${second}`);
                           }
                         }}
                         placeholder="MM"
@@ -393,10 +393,10 @@ function App() {
                         value={customStart ? customStart.split('T')[1]?.split(':')[2] : ''}
                         onChange={(e) => {
                           const val = e.target.value.replace(/\D/g, '').slice(0, 2);
-                          if (val && parseInt(val) >= 0 && parseInt(val) <= 59 && customStart) {
+                          if (customStart) {
                             const date = customStart.split('T')[0];
                             const [hour, minute, _] = customStart.split('T')[1]?.split(':') || ['00', '00', '00'];
-                            setCustomStart(`${date}T${hour}:${minute}:${val.padStart(2, '0')}`);
+                            setCustomStart(`${date}T${hour}:${minute}:${val}`);
                           }
                         }}
                         placeholder="SS"
@@ -436,10 +436,10 @@ function App() {
                         value={customEnd ? customEnd.split('T')[0].split('-')[1] : ''}
                         onChange={(e) => {
                           const val = e.target.value.replace(/\D/g, '').slice(0, 2);
-                          if (val && parseInt(val) >= 1 && parseInt(val) <= 12 && customEnd) {
+                          if (customEnd) {
                             const [year, _, day] = customEnd.split('T')[0].split('-');
                             const time = customEnd.split('T')[1] || '00:00:00';
-                            setCustomEnd(`${year}-${val.padStart(2, '0')}-${day}T${time}`);
+                            setCustomEnd(`${year}-${val}-${day}T${time}`);
                           }
                         }}
                         placeholder="MM"
@@ -453,10 +453,10 @@ function App() {
                         value={customEnd ? customEnd.split('T')[0].split('-')[2] : ''}
                         onChange={(e) => {
                           const val = e.target.value.replace(/\D/g, '').slice(0, 2);
-                          if (val && parseInt(val) >= 1 && parseInt(val) <= 31 && customEnd) {
+                          if (customEnd) {
                             const [year, month, _] = customEnd.split('T')[0].split('-');
                             const time = customEnd.split('T')[1] || '00:00:00';
-                            setCustomEnd(`${year}-${month}-${val.padStart(2, '0')}T${time}`);
+                            setCustomEnd(`${year}-${month}-${val}T${time}`);
                           }
                         }}
                         placeholder="DD"
@@ -470,10 +470,10 @@ function App() {
                         value={customEnd ? customEnd.split('T')[1]?.split(':')[0] : ''}
                         onChange={(e) => {
                           const val = e.target.value.replace(/\D/g, '').slice(0, 2);
-                          if (val && parseInt(val) >= 0 && parseInt(val) <= 23 && customEnd) {
+                          if (customEnd) {
                             const date = customEnd.split('T')[0];
                             const [_, minute, second] = customEnd.split('T')[1]?.split(':') || ['00', '00', '00'];
-                            setCustomEnd(`${date}T${val.padStart(2, '0')}:${minute}:${second}`);
+                            setCustomEnd(`${date}T${val}:${minute}:${second}`);
                           }
                         }}
                         placeholder="HH"
@@ -487,10 +487,10 @@ function App() {
                         value={customEnd ? customEnd.split('T')[1]?.split(':')[1] : ''}
                         onChange={(e) => {
                           const val = e.target.value.replace(/\D/g, '').slice(0, 2);
-                          if (val && parseInt(val) >= 0 && parseInt(val) <= 59 && customEnd) {
+                          if (customEnd) {
                             const date = customEnd.split('T')[0];
                             const [hour, _, second] = customEnd.split('T')[1]?.split(':') || ['00', '00', '00'];
-                            setCustomEnd(`${date}T${hour}:${val.padStart(2, '0')}:${second}`);
+                            setCustomEnd(`${date}T${hour}:${val}:${second}`);
                           }
                         }}
                         placeholder="MM"
@@ -504,10 +504,10 @@ function App() {
                         value={customEnd ? customEnd.split('T')[1]?.split(':')[2] : ''}
                         onChange={(e) => {
                           const val = e.target.value.replace(/\D/g, '').slice(0, 2);
-                          if (val && parseInt(val) >= 0 && parseInt(val) <= 59 && customEnd) {
+                          if (customEnd) {
                             const date = customEnd.split('T')[0];
                             const [hour, minute, _] = customEnd.split('T')[1]?.split(':') || ['00', '00', '00'];
-                            setCustomEnd(`${date}T${hour}:${minute}:${val.padStart(2, '0')}`);
+                            setCustomEnd(`${date}T${hour}:${minute}:${val}`);
                           }
                         }}
                         placeholder="SS"

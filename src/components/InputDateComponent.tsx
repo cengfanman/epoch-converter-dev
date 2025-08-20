@@ -59,16 +59,12 @@ export function InputDateComponent({ value, onChange, label, className = '' }: I
 
   const handleMonthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value.replace(/\D/g, '').slice(0, 2);
-    if (val === '' || (parseInt(val, 10) >= 1 && parseInt(val, 10) <= 12)) {
-      setMonth(val);
-    }
+    setMonth(val);
   };
 
   const handleDayChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value.replace(/\D/g, '').slice(0, 2);
-    if (val === '' || (parseInt(val, 10) >= 1 && parseInt(val, 10) <= 31)) {
-      setDay(val);
-    }
+    setDay(val);
   };
 
   return (
